@@ -4,7 +4,7 @@
 
 ## Description
 
-An Api that will return local businesses in the database. The businesses will return with the following information:
+This Api that will return local businesses stored in the MySQL database. The businesses will return with the following information:
 * Business Name
 * Business Type
 * Business Description
@@ -51,12 +51,20 @@ An Api that will return local businesses in the database. The businesses will re
 ### Available Endpoints
 
 ```
+v1.0 Endpoints
+GET: https://localhost:5001/api/v1/Businesses/
+GET: https://localhost:5001/api/v1/Businesses/{id}
+POST: http://localhost:5001/api/v1/Businesses/
+PUT: https://localhost:5001/api/v1/Businesses/{id}
+DELETE: https://localhost:5001/api/v1/Businesses{id}
 
-GET: https://localhost:5001/api/Businesses/
-GET: https://localhost:5001/api/Businesses/{id}
-POST: http://localhost:5001/api/Businesses/
-PUT: https://localhost:5001/api/Businesses/{id}
-DELETE: https://localhost:5001/api/Businesses{id}
+v2.0 Endpoints 
+GET: https://localhost:5001/api/v2/Businesses/
+GET: https://localhost:5001/api/v2/Businesses/{id}
+POST: http://localhost:5001/api/v2/Businesses/
+PUT: https://localhost:5001/api/v2/Businesses/{id}
+DELETE: https://localhost:5001/api/v2/Businesses{id}
+Note: v2.0 endpoint allows for query search in GET method
 
 ```
 
@@ -66,6 +74,24 @@ DELETE: https://localhost:5001/api/Businesses{id}
 * Your browser will open https://localhost:5001/swagger/index.html
 * All endpoints will be available within swagger giving the user full CRUD capability.
 
+
+# To test routes in Postman: 
+
+* Download and install postman.
+* Open postman and select New -> HTTP.
+* Enter any of the above endpoints and click send to recieve request back.
+* Dropdown menu must match which type of request you are sending GET/POST/PUT/DELETE.
+
+# Optional v2.0 Query String Parameters for GET Request
+
+GET requests to `https://localhost:5001/api/v2/Businesses/` allows for optional string query. All queries set to contain, 
+
+| Parameter   | Type        |  Required    | Description |
+| ----------- | ----------- | -----------  | ----------- |
+| name        | String      | not required | Returns business(es) with matching names containing query input |
+| businessType| String      | not required | Returns business(es) with business type containing query input |
+| description | String      | not required | Returns business(es) with description containing query input |
+| reviews     | String      | not required | Returns business(es) with reviews containing query input|
 
 ## Known bugs
 
