@@ -15,11 +15,23 @@ namespace LocalBusinessApi.Controllers
             _db = db;
         }
 
-        //Get api/businesses
+        //Get: api/businesses
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Business>>> Get()
         {
             return await _db.Businesses.ToListAsync();
+        }
+
+        //Get: api/businesses/2
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Business>> GetBusiness(int id)
+        {
+            Business business = await _db.Businesses.FindAsync(id);
+            if (business == null)
+            {
+                return NotFound();
+            }
+            return business;
         }
     }
 }
