@@ -17,10 +17,29 @@ namespace LocalBusinessApi.Controllers.v2
         }
 
         //Get: api/businesses
+       
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Business>>> Get()
+        public async Task<ActionResult<IEnumerable<Business>>> Get
+        (string name, string businessType, string description, string reviews)
         {
-            return await _db.Businesses.ToListAsync();
+            IQueryable<Business> query = _db.Businesses.AsQueryable();
+            if (name != null)
+            {
+                query = query.Where(entry => entry.Name.Contains(name));
+            }
+            if (businessType != null)
+            {
+                query = query.Where(entry => entry.BusinessType.Contains(businessType));
+            }
+            if (description != null)
+            {
+                query = query.Where(entry => entry.Description.Contains(description));
+            }
+            if (reviews != null)
+            {
+                query = query.Where(entry => entry.Reviews.Contains(reviews));
+            }
+            return await query.ToListAsync();
         }
 
         //Get: api/businesses/2
